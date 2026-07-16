@@ -82,6 +82,7 @@ The following table outlines the model's prediction accuracy and classification 
 
 ```text
 .
+├── dlrm_data_eda.ipynd           # EDA 
 ├── dlrm_model.py                 # PyTorch ScoutDLRM neural network architecture
 ├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
 ├── scout_dataset.py              # PyTorch custom Dataset and sparse-offset collate function
