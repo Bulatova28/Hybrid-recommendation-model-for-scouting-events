@@ -49,6 +49,8 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 ---
 
 ## Repository File Structure
+
+```text
 .
 ├── dlrm_model.py                 # PyTorch ScoutDLRM neural network architecture
 ├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
