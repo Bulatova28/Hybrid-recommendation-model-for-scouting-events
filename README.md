@@ -25,7 +25,7 @@ The system ingests multi-modal datasets and splits them into three independent c
 │
 ├──► Continuous Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ──┐
 │                                                                        │
-├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Expectation Head]
+├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Head]
 │                                                                        │
 └──► Categorical Fields ─► Integer Label Mapping ───────► [Embed Bags] ──┘
 ```
