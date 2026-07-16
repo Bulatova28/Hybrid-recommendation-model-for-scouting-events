@@ -16,14 +16,14 @@ An advanced, hybrid recommendation model for scouting events that matches scouts
 
 ### 1. Preprocessing & Feature Engineering Pipeline
 The system ingests multi-modal datasets and splits them into three independent channels before tensor formation:
-* **Continuous Features:** `age`, `price` (log-normalized), `min_age`, `max_age`, and `duration` (derived as `end_date - start_date + 1`).
-* **Categorical Features:** `category` (mapped dynamically across scout ranks), `type`, `currency`, `is_online`, and `season` (extracted cyclically).
-* **Textual Features:** `interests` (scout profile hobbies) and `description` (event payload text).
+* **Numeric features:** `age`, `price` (log-normalized), `min_age`, `max_age`, and `duration` (derived as `end_date - start_date + 1`).
+* **Categorical features:** `category` (mapped dynamically across scout ranks), `type`, `currency`, `is_online`, and `season` (extracted cyclically).
+* **Text features:** `interests` (scout profile hobbies) and `description` (event payload text).
 
 ```text
 [Raw Input Fields]
 │
-├──► Continuous Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ──┐
+├──► Numeric Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ──┐
 │                                                                        │
 ├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Head]
 │                                                                        │
