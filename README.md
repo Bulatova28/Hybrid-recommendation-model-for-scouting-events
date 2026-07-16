@@ -23,7 +23,7 @@ The system ingests multi-modal datasets and splits them into three independent c
 ```text
 [Raw Input Fields]
 │
-├──► Numeric Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ──┐
+├──► Numeric Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ─────┐
 │                                                                        │
 ├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Head]
 │                                                                        │
