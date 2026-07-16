@@ -4,11 +4,11 @@ An advanced, hybrid recommendation model for scouting events that matches scouts
 
 ## Key Strengths & Technical Advantages
 
-* `Specialized text block (Text MLP):` Unlike standard DLRM implementations that group all dense inputs together, this architecture isolates textual descriptions (user interests and event descriptions) into a specialized neural network block to perform deep semantic analysis.
-* `State-of-the-Art embedding engine (Gemma 300M):` Using the *`google/embeddinggemma-300m`* entence-transformer model to encode text data. It maximizes efficiency by using Matryoshka Representation Learning (MRL) to truncate embeddings down to 128 dimensions with minimal semantic loss.
-* `Ordinal Regression idea:` Instead of treating user feedback as independent categories or arbitrary continuous values, the model solves an ordinal regression problem. It predicts a probability distribution over the 5-star rating scale using a Softmax layer and computes a weighted mean score to preserve structural ranking distances.
-* `Advanced feature engineering:` Automatically handles cyclic features via a custom sine-cosine cyclic encoder and performs explicit temporal duration feature extraction out of date windows.
-* `Gradio UI:` Shipped with a highly optimized Gradio web interface featuring custom CSS card components, an automated age-to-category mapping system, and real-time inference handling.
+* **`Specialized text block (Text MLP):`** Unlike standard DLRM implementations that group all dense inputs together, this architecture isolates textual descriptions (user interests and event descriptions) into a specialized neural network block to perform deep semantic analysis.
+* **`State-of-the-Art embedding engine (Gemma 300M):`** Using the `google/embeddinggemma-300m` sentence-transformer model to encode text data. It maximizes efficiency by using Matryoshka Representation Learning (MRL) to truncate embeddings down to 128 dimensions with minimal semantic loss.
+* **`Ordinal Regression idea:`** Instead of treating user feedback as independent categories or arbitrary continuous values, the model solves an ordinal regression problem. It predicts a probability distribution over the 5-star rating scale using a Softmax layer and computes a weighted mean score to preserve structural ranking distances.
+* **`Advanced feature engineering:`** Automatically handles cyclic features via a custom sine-cosine cyclic encoder and performs explicit temporal duration feature extraction out of date windows.
+* **`Gradio UI:`** Shipped with a highly optimized Gradio web interface featuring custom CSS card components, an automated age-to-category mapping system, and real-time inference handling.
 
 ---
 
