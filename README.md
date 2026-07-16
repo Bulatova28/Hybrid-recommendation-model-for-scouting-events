@@ -35,12 +35,12 @@ $$\mathbf{A}_{\text{all}} = \left[ \mathbf{v}_{\text{dense}}, \mathbf{v}_{\text{
 
 $$\mathbf{X}_{\text{dot}} = \text{upper\\_tri\\_flat}(\mathbf{A}_{\text{all}} \times \mathbf{A}_{\text{all}}^T)$$
 
-$$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} \,\Vert{}\, \mathbf{X}_{\text{dot}} \right]$$
+$$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} \Vert{} \mathbf{X}_{\text{dot}} \right]$$
 
 ### 3. Ordinal Regression Head
 To handle the discrete 5-star ranking structure correctly, the model uses a softened expectation layer instead of standard cross-entropy or mean squared error:
 
-$$\mathbf{z} = \text{Top\_MLP}(\mathbf{X}_{interaction}) \in \mathbb{R}^5$$
+$$\mathbf{z} = \text{Top MLP}(\mathbf{X}_{interaction}) \in \mathbb{R}^5$$
 
 $$P(\text{rating} = k) = \frac{\exp(z_k / T)}{\sum_{j=1}^5 \exp(z_j / T)}, \quad T = 0.2$$
 
