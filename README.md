@@ -12,7 +12,7 @@ An advanced, hybrid recommendation model for scouting events that matches scouts
 
 ---
 
-## Model Architecture & Core Innovations
+## Model Architecture
 
 ### 1. Preprocessing & Feature Engineering Pipeline
 The system ingests multi-modal datasets and splits them into three independent channels before tensor formation:
@@ -61,19 +61,19 @@ The ScoutDLRM model was trained on the processed multi-modal dataset using a com
 | Learning Rate | 0.001 |
 | Batch Size | 32 |
 | Loss Function | Hybrid ($L_{\text{MSE}} + L_{\text{CE}}$) |
-| Training Epochs | 20 |
+| Training Epochs | 18 |
 | Softmax Temperature ($T$) | 0.2 |
 
 ### Performance Metrics on Test Dataset
 The following table outlines the model's prediction accuracy and classification alignment evaluated on an independent test set:
 
-| Metric | Value | Status |
-| :--- | :--- | :--- |
-| Soft Agreement ($\epsilon = 0.25$) | 94% | Optimal |
-| Mean Absolute Error (MAE) | 0.1953 | Optimal |
-| Coefficient of Determination ($R^2$) | 0.8867 | Optimal |
-| Classification Accuracy | 90% | Optimal |
-| Macro F1-Score | 0.82 | Optimal |
+| Metric | Value | 
+| :--- | :--- | 
+| Soft Agreement ($\epsilon = 0.25$) | 91% | 
+| MAE | 0.1953 | 
+| $R^2$ | 0.8867 | 
+| Accuracy | 94% | 
+| Macro F1-Score | 0.89 | 
 
 ---
 
