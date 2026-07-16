@@ -89,7 +89,7 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 
 ## Usage
 
-### 1. Launching the Gradio Web Application
+### Launching the Gradio Web Application
 
 To run the production-ready interactive user interface locally, execute the main application script:
 ```bash
@@ -98,9 +98,3 @@ python scout_app.py
     
 Once initialized, the interface will be available at http://localhost. The app contains a built-in pre-warming mechanism for the sentence-transformer model to ensure zero-lag execution upon the first user request.
 
-## Model Hyperparameters
-The neural network configurations hardcoded into the system execution layers are mapped as follows: 
-- **Embedding Framework**: 3 distinct tracking tables with an embedding vector size of 32 (embed_dim=32) processing multi-categorical scout structures. 
-- **Bottom MLP Dimension Layers**: [8 -> 128 -> 64 -> 32] for continuous dense parameter mapping with a internal dropout regularization factor of 0.2. 
-- **Text MLP Dimension Layers**: [256 -> 64 -> 32] specialized text tensor processor tracking the truncated 128-dimensional multi-token Gemma embeddings. 
-- **Interaction Input Vector Dimension**: 42 total cross-features combined with continuous indices[cite: 4].Top MLP Dimension Layers: [42 -> 16 -> 5] predicting categorical scores passed straight into the Softmax Expectation Head layer. 
