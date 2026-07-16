@@ -31,11 +31,11 @@ The system ingests multi-modal datasets and splits them into three independent c
 ### 2. Interaction Layer Mechanics
 The interaction layer captures explicit cross-feature correlations. It collects the continuous latent vectors output by the Bottom MLP, the text vectors from the Text MLP, and the sparse embeddings generated via `nn.EmbeddingBag` layers. It computes a batch dot-product matrix across all vector combinations and flattens only the unique upper-triangular elements to prevent feature redundancy.
 
-$$\mathbf{A}_{all} = \left[ \mathbf{v}_{dense}, \mathbf{v}_{text}, \mathbf{v}_{sparse,1}, \dots, \mathbf{v}_{sparse,M} \right]^T \in \mathbb{R}^{(2+M) \times D}$$
+$$\mathbf{A}_{\text{all}} = \left[ \mathbf{v}_{\text{dense}}, \mathbf{v}_{\text{text}}, \mathbf{v}_{\text{sparse},1}, \dots, \mathbf{v}_{\text{sparse},M} \right]^T \in \mathbb{R}^{(2+M) \times D}$$
 
-$$\mathbf{X}_{dot} = \text{upper\_tri\_flat}(\mathbf{A}_{all} \mathbf{A}_{all}^T)$$
+$$\mathbf{X}_{\text{dot}} = \text{upper\_tri\_flat}(\mathbf{A}_{\text{all}} \mathbf{A}_{\text{all}}^T)$$
 
-$$\mathbf{X}_{interaction} = \left[ \mathbf{v}_{dense} \,\Vert{}\, \mathbf{X}_{dot} \right]$$
+$$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} \,\Vert{}\, \mathbf{X}_{\text{dot}} \right]$$
 
 ### 3. Ordinal Regression Head
 To handle the discrete 5-star ranking structure correctly, the model uses a softened expectation layer instead of standard cross-entropy or mean squared error:
