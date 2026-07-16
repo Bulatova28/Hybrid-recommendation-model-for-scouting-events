@@ -58,7 +58,8 @@ The ScoutDLRM model was trained on the processed multi-modal dataset using a com
 | Parameter | Value |
 | :--- | :--- |
 | Optimizer | Adam |
-| Learning Rate | 0.001 |
+| Learning Rate | 5e-4 |
+| Weight Decay | 1e-3 |
 | Batch Size | 32 |
 | Loss Function | Hybrid ($L_{\text{MSE}} + L_{\text{CE}}$) |
 | Training Epochs | 18 |
