@@ -23,11 +23,11 @@ The system ingests multi-modal datasets and splits them into three independent c
 ```text
 [Raw Input Fields]
 │
-├──► Numeric Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ─────┐
-│                                                                        │
-├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Head]
-│                                                                        │
-└──► Categorical Fields ─► Integer Label Mapping ───────► [Embed Bags] ──┘
+├──► Numeric Fields ─────► Log Transform & Scaler ──────► [Bottom MLP] ─────┐
+│                                                                           │
+├──► Text Fields ────────► Gemma-300M Embedder (MRL) ───► [Text MLP] ───────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Head]
+│                                                                           │
+└──► Categorical Fields ─► Integer Label Mapping ───────► [Embed Bags] ─────┘
 ```
 
 ### 2. Interaction Layer Mechanics
@@ -50,6 +50,33 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 
 ---
 
+## Model Training & Evaluation
+
+### Training Configuration
+The ScoutDLRM model was trained on the processed multi-modal dataset using a combined optimization strategy to balance ordinal regression and categorical probability constraints.
+
+| Parameter | Value |
+| :--- | :--- |
+| Optimizer | Adam |
+| Learning Rate | 0.001 |
+| Batch Size | 32 |
+| Loss Function | Hybrid ($L_{\text{MSE}} + L_{\text{CE}}$) |
+| Training Epochs | 20 |
+| Softmax Temperature ($T$) | 0.2 |
+
+### Performance Metrics on Test Dataset
+The following table outlines the model's prediction accuracy and classification alignment evaluated on an independent test set:
+
+| Metric | Value | Status |
+| :--- | :--- | :--- |
+| Soft Agreement ($\epsilon = 0.25$) | 94% | Optimal |
+| Mean Absolute Error (MAE) | 0.1953 | Optimal |
+| Coefficient of Determination ($R^2$) | 0.8867 | Optimal |
+| Classification Accuracy | 90% | Optimal |
+| Macro F1-Score | 0.82 | Optimal |
+
+---
+
 ## Repository File Structure
 
 ```text
@@ -57,7 +84,7 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 ├── dlrm_model.py                 # PyTorch ScoutDLRM neural network architecture
 ├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
 ├── scout_dataset.py              # PyTorch custom Dataset and sparse-offset collate function
-├── scout_app.py                  # Main Gradio application, authentication UI, and inference wrapper
+├── scout_app.py                  # Main Gradio application
 └── requirements.txt              # Python environment package dependencies
 ```
 
@@ -72,17 +99,12 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 ### Setup Environment
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/scoutify-dlrm.git](https://github.com/yourusername/scoutify-dlrm.git)
+   git clone [https://github.com/Bulatova28/Hybrid-recommendation-model-for-scouting-events.git](https://github.com/Bulatova28/Hybrid-recommendation-model-for-scouting-events.git)
    cd scoutify-dlrm
 
 2. Install dependencies:
     ```bash
     pip install -r requirements.txt
-
-3. Ensure the following files are present in the root directory before launching:
-- `scout_dlrm_dyploma_gemma.pth`
-- `feature_transformer_gemma.pkl`
-- `event_df.pkl`
 
 ## Usage
 
