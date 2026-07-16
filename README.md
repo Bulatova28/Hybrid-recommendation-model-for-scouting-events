@@ -33,7 +33,7 @@ The interaction layer captures explicit cross-feature correlations. It collects 
 
 $$\mathbf{A}_{\text{all}} = \left[ \mathbf{v}_{\text{dense}}, \mathbf{v}_{\text{text}}, \mathbf{v}_{\text{sparse},1}, \dots, \mathbf{v}_{\text{sparse},M} \right]^T \in \mathbb{R}^{(2+M) \times D}$$
 
-$$\mathbf{X}_{\text{dot}} = \text{upper\_tri\_flat}(\mathbf{A}_{\text{all}} \mathbf{A}_{\text{all}}^T)$$
+$$\mathbf{X}_{\text{dot}} = \text{upper\tri\flat}(\mathbf{A}_{\text{all}} \mathbf{A}_{\text{all}}^T)$$
 
 $$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} \,\Vert{}\, \mathbf{X}_{\text{dot}} \right]$$
 
