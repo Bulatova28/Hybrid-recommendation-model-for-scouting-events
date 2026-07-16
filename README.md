@@ -81,9 +81,9 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
     pip install -r requirements.txt
 
 3. Ensure the following files are present in the root directory before launching:
-- scout_dlrm_dyploma_gemma.pth
-- feature_transformer_gemma.pkl
-- event_df.pkl
+- `scout_dlrm_dyploma_gemma.pth`
+- `feature_transformer_gemma.pkl`
+- `event_df.pkl`
 
 ## Usage
 
