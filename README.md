@@ -1,18 +1,18 @@
-# Scoutify: Scout event recommendation system based on ScoutDLRM
+# ScoutDLRM: hybrid recommendation model for scouting events
 
-An advanced, hybrid personalization platform designed for the National Organization of Scouts of Ukraine to match scouts with optimal events based on demographic criteria, categorical preferences, and deep semantic text profiling. The core recommendation pipeline is powered by **ScoutDLRM**, a tailored adaptation of Facebook Deep Learning Recommendation Model architecture, featuring low-dimensional transformer text embeddings and an expectation-based ordinal regression head.
+An advanced, hybrid recommendation model for scouting events that matches scouts with optimal events based on deep semantic analysis of their interests, demographic criteria and categorical preferences, which integrates collaborative filtering, content-based and demographic approaches. ScoutDLRM is an adaptation of Facebook Deep Learning Recommendation Model (DLRM) architecture, improved with special text block fot text data analysis and ordinal regression idea for prediction of rates for each event by certain scout.
 
 ## Key Strengths & Technical Advantages
 
-* **Specialized Deep Text Profiling (Text MLP):** Unlike standard DLRM implementations that group all dense inputs together, this architecture isolates textual descriptions (user interests and event descriptions) into a specialized neural network block to extract deep semantic features.
-* **State-of-the-Art Embedding Engine (Gemma 300M):** Leverages the `google/embeddinggemma-300m` sentence-transformer model to encode text data. It maximizes efficiency by using Matryoshka Representation Learning (MRL) to truncate embeddings down to 128 dimensions with minimal semantic loss.
-* **Expectation-Based Ordinal Regression Head:** Instead of treating user feedback as independent categories or arbitrary continuous values, the model solves an ordinal regression problem. It predicts a probability distribution over the 5-star rating scale using a Softmax layer and computes a softened weighted mathematical expectation score to preserve structural ranking distances.
-* **Advanced Feature Engineering:** Automatically handles cyclical periodic variations via a custom sine-cosine cyclic encoder and performs explicit temporal duration feature extraction out of date windows.
-* **Production-Ready UI Environment:** Shipped with a highly optimized Gradio web interface featuring custom CSS card components, an automated age-to-category mapping system, and real-time inference handling.
+* **Specialized text block (Text MLP):** Unlike standard DLRM implementations that group all dense inputs together, this architecture isolates textual descriptions (user interests and event descriptions) into a specialized neural network block to perform deep semantic analysis.
+* **State-of-the-Art embedding engine (Gemma 300M):** Using the `google/embeddinggemma-300m` sentence-transformer model to encode text data. It maximizes efficiency by using Matryoshka Representation Learning (MRL) to truncate embeddings down to 128 dimensions with minimal semantic loss.
+* **Ordinal Regression idea:** Instead of treating user feedback as independent categories or arbitrary continuous values, the model solves an ordinal regression problem. It predicts a probability distribution over the 5-star rating scale using a Softmax layer and computes a weighted mean score to preserve structural ranking distances.
+* **Advanced feature engineering:** Automatically handles cyclic features via a custom sine-cosine cyclic encoder and performs explicit temporal duration feature extraction out of date windows.
+* **Gradio UI:** Shipped with a highly optimized Gradio web interface featuring custom CSS card components, an automated age-to-category mapping system, and real-time inference handling.
 
 ---
 
-## System Architecture & Core Innovations
+## Model Architecture & Core Innovations
 
 ### 1. Preprocessing & Feature Engineering Pipeline
 The system ingests multi-modal datasets and splits them into three independent channels before tensor formation:
@@ -37,7 +37,7 @@ $$\mathbf{A}_{\text{all}} = \left[ \mathbf{v}_{\text{dense}}, \mathbf{v}_{\text{
 
 $$\mathbf{X}_{\text{dot}} = \text{upper\\_tri\\_flat}(\mathbf{A}_{\text{all}} \times \mathbf{A}_{\text{all}}^T)$$
 
-$$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} \Vert{} \mathbf{X}_{\text{dot}} \right]$$
+$$\mathbf{X}_{\text{interaction}} = \left[ \mathbf{v}_{\text{dense}} , \mathbf{X}_{\text{dot}} \right]$$
 
 ### 3. Ordinal Regression Head
 To handle the discrete 5-star ranking structure correctly, the model uses a softened expectation layer instead of standard cross-entropy or mean squared error:
@@ -58,9 +58,6 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 ├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
 ├── scout_dataset.py              # PyTorch custom Dataset and sparse-offset collate function
 ├── scout_app.py                  # Main Gradio application, authentication UI, and inference wrapper
-├── event_df.pkl                  # Serialized event catalog pandas DataFrame
-├── feature_transformer_gemma.pkl # Saved data preprocessing pipeline state
-├── scout_dlrm_dyploma_gemma.pth  # Trained model checkpoint parameters
 └── requirements.txt              # Python environment package dependencies
 ```
 
