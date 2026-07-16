@@ -50,16 +50,17 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 
 ## Repository File Structure
 
-    ```text
-    .
-    ├── dlrm_model.py                 # PyTorch ScoutDLRM neural network architecture
-    ├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
-    ├── scout_dataset.py              # PyTorch custom Dataset and sparse-offset collate function
-    ├── scout_app.py                  # Main Gradio application, authentication UI, and inference wrapper
-    ├── event_df.pkl                  # Serialized event catalog pandas DataFrame
-    ├── feature_transformer_gemma.pkl # Saved data preprocessing pipeline state
-    ├── scout_dlrm_dyploma_gemma.pth  # Trained model checkpoint parameters
-    └── requirements.txt              # Python environment package dependencies
+```text
+.
+├── dlrm_model.py                 # PyTorch ScoutDLRM neural network architecture
+├── preprocessing_dlrm.py         # Feature engineering, CyclicEncoder, and Gemma transformer embedder
+├── scout_dataset.py              # PyTorch custom Dataset and sparse-offset collate function
+├── scout_app.py                  # Main Gradio application, authentication UI, and inference wrapper
+├── event_df.pkl                  # Serialized event catalog pandas DataFrame
+├── feature_transformer_gemma.pkl # Saved data preprocessing pipeline state
+├── scout_dlrm_dyploma_gemma.pth  # Trained model checkpoint parameters
+└── requirements.txt              # Python environment package dependencies
+```
 
 ---
 
