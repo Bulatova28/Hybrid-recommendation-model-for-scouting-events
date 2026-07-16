@@ -94,8 +94,8 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 To run the production-ready interactive user interface locally, execute the main application script:
     ```bash
     python scout_app.py
+    ```
     
-
 Once initialized, the interface will be available at http://localhost. The app contains a built-in pre-warming mechanism for the sentence-transformer model to ensure zero-lag execution upon the first user request.
 
 ## Model Hyperparameters
