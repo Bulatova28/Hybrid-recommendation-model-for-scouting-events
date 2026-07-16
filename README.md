@@ -90,6 +90,7 @@ $$\hat{y} = \sum_{k=1}^5 P(\text{rating} = k) \cdot k, \quad \text{where } k \in
 ## Usage
 
 ### 1. Launching the Gradio Web Application
+
 To run the production-ready interactive user interface locally, execute the main application script:
     ```bash
     python scout_app.py
