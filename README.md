@@ -20,6 +20,7 @@ The system ingests multi-modal datasets and splits them into three independent c
 * **Categorical Features:** `category` (mapped dynamically across scout ranks), `type`, `currency`, `is_online`, and `season` (extracted cyclically).
 * **Textual Features:** `interests` (scout profile hobbies) and `description` (event payload text).
 
+```text
 [Raw Input Fields]
 │
 ├──► Continuous Fields ──► Log Transform & Scaler ──────► [Bottom MLP] ──┐
@@ -27,6 +28,7 @@ The system ingests multi-modal datasets and splits them into three independent c
 ├──► Text Fields ────────► Gemma-300M Embedder (MRL) ──► [Text MLP] ─────┼─► [Interaction Layer] ─► [Top MLP] ─► [Softmax Expectation Head]
 │                                                                        │
 └──► Categorical Fields ─► Integer Label Mapping ───────► [Embed Bags] ──┘
+```
 
 ### 2. Interaction Layer Mechanics
 The interaction layer captures explicit cross-feature correlations. It collects the continuous latent vectors output by the Bottom MLP, the text vectors from the Text MLP, and the sparse embeddings generated via `nn.EmbeddingBag` layers. It computes a batch dot-product matrix across all vector combinations and flattens only the unique upper-triangular elements to prevent feature redundancy.
